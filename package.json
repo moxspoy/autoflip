@@ -1,0 +1,10 @@
+{
+  "name": "autoflip",
+  "version": "1.0.0",
+  "description": "automation for flip mobile projects",
+  "main": "index.js",
+  "repository": "https://github/moxspoy/autoflip",
+  "author": "M Nurilman Baehaqi",
+  "license": "MIT",
+  "private": false
+}
