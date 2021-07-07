@@ -1,0 +1,9 @@
+Flip
+APK
+Env: B2C Transaction
+
+What’s new?
+- <https://app.clickup.com/t/9zxd86|[PWF/B2C - Pay to Deposit] As a customer, I want to pay to merchant deposit>
+- <https://app.clickup.com/t/9zxd86|[PWF/B2C - Pay to Deposit] As a customer, I want to pay to merchant deposit>
+
+cc @b2c-trx
