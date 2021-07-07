@@ -14,6 +14,7 @@ const webhookUrl = WEBHOOK;
 const web = new WebClient(token);
 const webhook = new IncomingWebhook(webhookUrl);
 const channel = CHANNEL;
+
 export const sendMessage = async (text) => {
     try {
         const res = await web.chat.postMessage({ channel, text});
@@ -40,7 +41,6 @@ ${data}
 ${linkableArtifactsMessage}
 
         `;
-        await sendMessage(message);
         await sendWebHook(message);
     } catch (e) {
         console.log("Failed gans, because " + e.message);
