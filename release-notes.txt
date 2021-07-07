@@ -1,9 +1,19 @@
 Flip
 APK
 Env: B2C Regression
+Version: 1.27.0
 
 What’s new?
-- <https://app.clickup.com/t/9zxd86|[PWF/B2C - Pay to Deposit] As a customer, I want to pay to merchant deposit>
-- <https://app.clickup.com/t/9zxd86|[PWF/B2C - Pay to Deposit] As a customer, I want to pay to merchant deposit>
+- [B2C-Trx] Feature: Virtual Account (Negative Case) CU-77u9p9 M Nurilman Baehaqi* Yesterday 09.28
+- [B2C-Trx] Improvement: Realtime Overlay Loading in Send Money #CU-8815ym
+- [B2C-Act] Improvement: Add Benefit Page after user reached trx limit CU-91ucf2
+- [B2C-Trx] Fix: Crash After Get Unexpected Response in Transactions #cu-95xru2
+- [PWF] Feature: PWF VA Integration
+- [B2C-Act] Fix: reset-password token in deeplink can't obtained CU-8nxg72
+- [B2C-Trx] Improvement: Change Emoney Activatinon Flow #CU-95wvh8 M Nurilman Baehaqi*
+- [B2C-Trx] Feature: Deep Link Top Up Deposit M Nurilman Baehaqi* Yesterday 16.42
+- [PWF] UI Change: Redesign PWF Detail Page Mokh Rif'an Ardiansyah* Yesterday 11.12
+- [B2C-Trx] Improvement: Track Pop-up Flip Plus #CU-81y3ku Ajeng* 05/07/21 21.51
+- Many more...
 
-cc @b2c-qa
+cc @b2c-qa @aditya @qa-b2b-pwf
