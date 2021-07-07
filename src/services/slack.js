@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 // Read a token from the environment variables
 dotenv.config();
-const {SLACK_TOKEN, WEBHOOK, CHANNEL} = process.env;
+const {SLACK_TOKEN, WEBHOOK, CHANNEL, AUTOFLIP_DIR} = process.env;
 const token = SLACK_TOKEN;
 
 const webhookUrl = WEBHOOK;
@@ -16,7 +16,7 @@ const webhook = new IncomingWebhook(webhookUrl);
 const channel = CHANNEL;
 export const sendMessage = async (text) => {
     try {
-        const res = await web.chat.postMessage({ channel, text });
+        const res = await web.chat.postMessage({ channel, text});
         console.log('Message sent: ', res.ts);
     } catch (e) {
         console.log("Failed because " + e.message);
@@ -64,11 +64,10 @@ Download here:
 export const uploadSingleFile = async (file) => {
     const response = await web.files.upload({
         channel,
-        file: Buffer.from(file),
+        file: fs.readFileSync(file),
         filename: file,
-        filetype: 'apk',
     });
-    return response.file.url_private_download;
+    return response.file.permalink;
 }
 
 export const sendWebHook = async (text) => {
