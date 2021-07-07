@@ -27,7 +27,8 @@ export const sendMessage = async (text) => {
 export const sendMessageAndUpload = async (attachments) => {
     try {
         const urls = [];
-        const releaseNotesFile = 'release-notes.txt';
+
+        const releaseNotesFile = AUTOFLIP_DIR + 'release-notes.txt';
         for (let i = 0; i < attachments.length; i++) {
             const url = await uploadSingleFile(attachments[i]);
             urls.push(url);
@@ -66,8 +67,16 @@ export const uploadSingleFile = async (file) => {
         channel,
         file: fs.readFileSync(file),
         filename: file,
+
     });
-    return response.file.permalink;
+    const sharedPublicURLRes = await web.files.sharedPublicURL({
+        file: response.file.id,
+    });
+
+    const parsedPermalink = sharedPublicURLRes.file.permalink_public.split('-');
+    const pubSecret = parsedPermalink[parsedPermalink.length - 1];
+
+    return sharedPublicURLRes.file.url_private + `?pub_secret=${pubSecret}`
 }
 
 export const sendWebHook = async (text) => {
