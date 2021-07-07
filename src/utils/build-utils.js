@@ -31,3 +31,9 @@ export const buildAndroidStagingDebugReleaseAndNotifySlack = () => {
     executeCommand(command);
 }
 
+export const buildAndroidStagingDebugSlack = () => {
+    const command =
+        `cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+    executeCommand(command);
+}
+

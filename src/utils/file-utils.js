@@ -1,5 +1,8 @@
 import fs from "fs";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export function getAndroidArtifact () {
     const absolute = process.env.FLIP_MOBILE_DIR + 'android/app/build/outputs/apk/';

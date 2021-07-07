@@ -29,6 +29,9 @@ switch (packages.action) {
     case 'staging_release_and_debug_slack':
         BuildUtils.buildAndroidStagingDebugReleaseAndNotifySlack();
         break;
+    case 'staging_debug_slack':
+        BuildUtils.buildAndroidStagingDebugSlack();
+        break;
     default:
         console.error("Please specify action");
 }
