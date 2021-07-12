@@ -37,3 +37,9 @@ export const buildAndroidStagingDebugSlack = () => {
     executeCommand(command);
 }
 
+export const buildAndroidProductionReleaseDebugSlack = () => {
+    const command =
+        `cd ${androidProjectDirectory} && ENVFILE=.env.production ./gradlew assembleProductionDebug && ENVFILE=.env.production ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
+    executeCommand(command);
+}
+

@@ -10,6 +10,7 @@
   "type": "module",
   "scripts": {
     "staging_release_and_debug_slack": "node src/utils/acceptor.js --action staging_release_and_debug_slack",
+    "production_release_and_debug_slack": "node src/utils/acceptor.js --action production_release_and_debug_slack",
     "staging_debug_slack": "node src/utils/acceptor.js --action staging_debug_slack",
     "staging_release_and_debug_firebase": "yarn move_to_android_project && yarn clean_android_production && yarn build_android_staging_debug && yarn build_android_staging_release && yarn move_to_work_directory && node index.js",
     "move_to_android_project": "node src/utils/acceptor.js --action move_to_android_project",
