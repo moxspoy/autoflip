@@ -1,16 +1,11 @@
 Flip
 `APK`
-Env: B2C Regression
-Version: 1.27.2-rc02
-
-Changelog?
-- <https://app.clickup.com/t/a23acy|Variance is not recorded when user choose Flip Reguler>
-- <https://app.clickup.com/t/a3wk9h|Animation is not closed when popup limit appear (Bundle Transfer race condition)>
-- <https://app.clickup.com/t/a23j64|Stuck in loading upload process after success upload>
+Env: Production (Sanity)
+Version: 1.27.0
 
 Full Changelog:
-- <https://flipid.testrail.io/index.php?/runs/view/382&group_by=cases:section_id&group_order=asc|*B2C Activation*>:
-- <https://flipid.testrail.io/index.php?/runs/view/383&group_by=cases:section_id&group_order=asc|*B2C Transaction*>:
-- <https://flipid.testrail.io/index.php?/runs/view/384&group_by=cases:section_id&group_order=asc|*B2B PWF*>:
+- <https://flipid.testrail.io/index.php?/runs/view/382&group_by=cases:section_id&group_order=asc|*B2C Activation*>
+- <https://flipid.testrail.io/index.php?/runs/view/383&group_by=cases:section_id&group_order=asc|*B2C Transaction*>
+- <https://flipid.testrail.io/index.php?/runs/view/384&group_by=cases:section_id&group_order=asc|*B2B PWF*>
 
-cc @b2c-qa @qa-b2b-pwf
+cc @b2c-qa @b2b-qa
