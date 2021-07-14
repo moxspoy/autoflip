@@ -5,14 +5,14 @@ import dotenv from "dotenv";
 
 // Read a token from the environment variables
 dotenv.config();
-const {SLACK_TOKEN, WEBHOOK, CHANNEL, AUTOFLIP_DIR} = process.env;
+const {SLACK_TOKEN, WEBHOOK, CHANNEL, AUTOFLIP_DIR, WEBHOOK_REGRESSION_CHANNEL} = process.env;
 const token = SLACK_TOKEN;
 
 const webhookUrl = WEBHOOK;
 
 // Initialize
 const web = new WebClient(token);
-const webhook = new IncomingWebhook(webhookUrl);
+let webhook = new IncomingWebhook(webhookUrl);
 const channel = CHANNEL;
 
 export const sendMessage = async (text) => {
@@ -79,7 +79,11 @@ export const uploadSingleFile = async (file) => {
     return sharedPublicURLRes.file.url_private + `?pub_secret=${pubSecret}`
 }
 
-export const sendWebHook = async (text) => {
+export const sendWebHook = async (text, isIos) => {
+    if (isIos) {
+        const regressionWebhook = WEBHOOK_REGRESSION_CHANNEL;
+        webhook = new IncomingWebhook(regressionWebhook);
+    }
     await webhook.send({
         text,
         link_names: true,
