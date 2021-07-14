@@ -15,6 +15,17 @@ export function getAndroidArtifact () {
     return apks;
 }
 
+export function getIosArtifact () {
+    const absolute = process.env.FLIP_MOBILE_DIR + 'ios/build/';
+    const extension = `.ipa`;
+    const ipa = findFileFromDirectory(absolute, extension);
+    if (!ipa?.length) {
+        throw new Error("File not found, make sure that you have built the project");
+    }
+    console.log(`Hooray! We got the files`);
+    return ipa[0];
+}
+
 const result = [];
 
 export function findFileFromDirectory(startPath, filter) {
