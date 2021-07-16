@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export function getAndroidArtifact () {
-    const absolute = process.env.FLIP_MOBILE_DIR + 'android/app/build/outputs/apk/';
+    const absolute = process.env.FLIP_MOBILE_DIR + 'android/app/build/outputs/';
     const extension = `.apk`;
     const apks = findFileFromDirectory(absolute, extension);
     if (!apks) {
