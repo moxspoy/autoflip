@@ -46,3 +46,7 @@ export function findFileFromDirectory(startPath, filter) {
     }
     return result;
 }
+
+export function isWindows() {
+    return process.platform === "win32";
+}
