@@ -16,15 +16,9 @@
     "move_to_android_project": "node src/utils/acceptor.js --action move_to_android_project",
     "move_to_flip_project": "node src/utils/acceptor.js --action move_to_flip_project",
     "move_to_work_directory": "node src/utils/acceptor.js --action move_to_work_directory",
-    "build_android_bundle_production_release": "yarn move_to_flip_project && ENVFILE=.env.production ./gradlew bundleProductionRelease",
-    "build_android_bundle_debug": "yarn move_to_flip_project && ENVFILE=.env.production ./gradlew bundleProductionDebug",
-    "build_android_production_release": "yarn move_to_flip_project && ENVFILE=.env.production ./gradlew assembleProductionRelease",
-    "build_android_production_debug": "yarn move_to_flip_project && ENVFILE=.env.production ./gradlew assembleProductionDebug",
-    "build_android_staging_release": "yarn move_to_flip_project && ENVFILE=.env.staging ./gradlew assembleStagingRelease",
-    "build_android_staging_debug": "yarn move_to_flip_project && ENVFILE=.env.staging ./gradlew assembleStagingDebug",
-    "build_android_production_release_windows": "cd android && set ENVFILE=.env.production && .\\gradlew assembleProductionRelease && cd ..",
-    "build_android_production_debug_windows": "cd android && set ENVFILE=.env.production && .\\gradlew assembleProductionDebug && cd ..",
-    "clean_android_production": "node src/utils/acceptor.js --action clean_android_production"
+    "clean_android_production": "node src/utils/acceptor.js --action clean_android_production",
+    "sentry_android": "node src/utils/acceptor.js --action sentry_android",
+    "sentry_ios": "node src/utils/acceptor.js --action sentry_ios"
   },
   "dependencies": {
     "@slack/web-api": "^6.2.4",
