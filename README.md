@@ -20,7 +20,8 @@ You must be able to build the flip mobile app project manually (XCode, Java, And
 1. Clone this project
 2. `yarn install`
 3. Ask `.env` file for this project to eqi@flip.id
-4. You can run following scripts
+4. Edit release notes in `release-notes.txt`
+5. You can run following scripts
 
 Script  | Description
 ------------- | -------------
