@@ -1,4 +1,4 @@
-import {executeCommand, executeSyncCommand} from "./cli-utils.js";
+import {executeCommand} from "./cli-utils.js";
 import {isWindows} from "./file-utils.js";
 import dotenv from "dotenv";
 
@@ -61,17 +61,10 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
 }
 
 export const buildIosProductionStagingFirebase = () => {
-    const prepareCommand = `cd ${iosProjectDirectory} && pod install`;
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`;
-    const afterCommand = `node ${autoFlipDirectory}/index-ios.js`;
-    console.log("wkwkwkwk", "prepareCommand")
-    executeSyncCommand(prepareCommand);
-    console.log("wkwkwkwk", "archiveCommand")
-    executeSyncCommand(archiveCommand);
-    console.log("wkwkwkwk", "exportIPACommand")
-    executeSyncCommand(exportIPACommand);
-    console.log("wkwkwkwk", "afterCommand")
-    executeSyncCommand(afterCommand);
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
+    const command =
+        `cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
+    executeCommand(command);
 }
 
