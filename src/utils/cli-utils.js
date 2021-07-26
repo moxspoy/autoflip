@@ -52,7 +52,7 @@ export const executeSpawnCommand = (command, callback) => {
             shell: true,
         });
         executor.stdout.on("data", function(res) {
-            console.log(res);
+            console.log(res.toString());
         });
         executor.on("exit", function() {
             console.log("autoflip_log", "complete spawn " + command);
