@@ -9,7 +9,6 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "preinstall": "yarn",
     "staging_release_and_debug_slack": "node src/utils/acceptor.js --action staging_release_and_debug_slack",
     "production_release_and_debug_slack": "node src/utils/acceptor.js --action production_release_and_debug_slack",
     "production_release_oppo_slack": "node src/utils/acceptor.js --action production_release_oppo_slack",
