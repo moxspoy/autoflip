@@ -21,13 +21,17 @@
     "android_clean": "node src/utils/acceptor.js --action clean_android_production",
     "ios_clean": "node src/utils/acceptor.js --action ios_clean",
     "sentry_android": "node src/utils/acceptor.js --action sentry_android",
-    "sentry_ios": "node src/utils/acceptor.js --action sentry_ios"
+    "sentry_ios": "node src/utils/acceptor.js --action sentry_ios",
+    "test": "jest"
   },
   "dependencies": {
     "@slack/web-api": "^6.2.4",
     "@slack/webhook": "^6.0.0",
+    "clickup-sdk": "git+https://github.com/moxspoy/clickup-sdk.git",
     "dotenv": "^10.0.0",
-    "minimist": "^1.2.5",
-    "clickup-sdk": "git+https://github.com/moxspoy/clickup-sdk.git"
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
