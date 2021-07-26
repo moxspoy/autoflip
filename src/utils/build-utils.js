@@ -61,10 +61,17 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
 }
 
 export const buildIosProductionStagingFirebase = () => {
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
-    const command =
-        `cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
-    executeCommand(command);
+    const prepareCommand = `cd ${iosProjectDirectory} && pod install`;
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`;
+    const afterCommand = `node ${autoFlipDirectory}/index-ios.js`;
+    console.log("wkwkwkwk", "prepareCommand")
+    executeCommand(prepareCommand);
+    console.log("wkwkwkwk", "archiveCommand")
+    executeCommand(archiveCommand);
+    console.log("wkwkwkwk", "exportIPACommand")
+    executeCommand(exportIPACommand);
+    console.log("wkwkwkwk", "afterCommand")
+    executeCommand(afterCommand);
 }
 
