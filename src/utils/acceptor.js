@@ -2,7 +2,7 @@ import minimist from 'minimist';
 import {execSync} from "child_process";
 import * as CLIUtils from "./cli-utils.js";
 import dotenv from "dotenv";
-import {BuildUtils} from "./index.js";
+import {BuildUtils, SentryUtils} from "./index.js";
 
 dotenv.config();
 
@@ -37,6 +37,15 @@ switch (packages.action) {
         break;
     case 'ios_staging_firebase':
         BuildUtils.buildIosProductionStagingFirebase();
+        break;
+    case 'sentry_android':
+        SentryUtils.uploadSourceMapsAndroidToSentry();
+        break;
+    case 'sentry_ios':
+        SentryUtils.uploadSourceMapsIosToSentry();
+        break;
+    case 'production_release_oppo_slack':
+        BuildUtils.buildAndroidProductionReleaseOppoSlack();
         break;
     default:
         console.error("Please specify action");

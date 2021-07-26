@@ -50,6 +50,16 @@ export const buildAndroidProductionReleaseDebugSlack = () => {
     executeCommand(command);
 }
 
+export const buildAndroidProductionReleaseOppoSlack = () => {
+    const copyManifestCommand = `cp ./patch/AndroidManifest.xml ${androidProjectDirectory}/app/src/main/AndroidManifest.xml`;
+    const copyCrashLoggingCommand = `cp ./patch/CrashLoggingUtils.js ${flipMobileDirectory}src/utils/CrashLoggingUtils.js`;
+    executeCommand(copyManifestCommand);
+    executeCommand(copyCrashLoggingCommand);
+    const buildCommand =
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
+    executeCommand(buildCommand);
+}
+
 export const buildIosProductionStagingFirebase = () => {
     const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
     const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
