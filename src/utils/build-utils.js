@@ -1,4 +1,4 @@
-import {executeCommand} from "./cli-utils.js";
+import {executeCommand, executeSpawnCommand} from "./cli-utils.js";
 import {isWindows} from "./file-utils.js";
 import dotenv from "dotenv";
 
@@ -62,11 +62,12 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
 
 export const buildIosProductionStagingFirebase = () => {
     try {
-        const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
+        const archiveCommand = `cd ${iosProjectDirectory} && xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
         const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
         const command =
             `cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
-        executeCommand(command);
+        console.log(command)
+        executeSpawnCommand(command);
     } catch (e) {
         console.log("wkwkkw");
         console.log(e);

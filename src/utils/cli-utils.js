@@ -1,4 +1,4 @@
-import {exec, execSync} from "child_process";
+import {exec, execSync, spawn} from "child_process";
 import minimist from 'minimist';
 import dotenv from "dotenv";
 
@@ -43,6 +43,23 @@ export const executeCommand = (command) => {
 export const executeSyncCommand = (command) => {
     if (command) {
         execSync(command);
+    }
+}
+
+export const executeSpawnCommand = (command, callback) => {
+    if (command) {
+        const executor = spawn(command, {
+            shell: true,
+        });
+        executor.stdout.on("data", function(res) {
+            console.log(res);
+        });
+        executor.on("exit", function() {
+            console.log("autoflip_log", "complete spawn " + command);
+        });
+        executor.stderr.on('data', (data) => {
+            console.error(`child stderr:\n${data}`);
+        });
     }
 }
 

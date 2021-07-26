@@ -16,7 +16,7 @@ import * as CLIUtils from "./src/utils/cli-utils.js";
         try {
             await FirebaseService.upload(files, true);
             const text = `
-Hallo! new iOS application (1.27.0-rc01) has been uploaded into Firebase App Distribution.
+Hallo! This is tested message. new iOS application has been uploaded into Firebase App Distribution.
 Check it out guys!        
         `
             await SlackService.sendWebHook(text, true);
