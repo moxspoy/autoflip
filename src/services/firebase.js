@@ -11,5 +11,6 @@ export const upload = (file, isStaging) => {
         : process.env.FIREBASE_APP_ID_IOS_PRODUCTION_RELEASE;
     const releaseNotesFile = path.join(process.cwd(), 'release-notes.txt');
     const groups = "B2B QA, Flip QA";
+    console.log("Autoflip", `uplading ${file} into firebase`);
     execSync(`firebase --token ${token} appdistribution:distribute --app ${appId}  --release-notes-file ${releaseNotesFile} --groups ${groups}`)
 }

@@ -89,3 +89,8 @@ export const sendWebHook = async (text, isIos) => {
         link_names: true,
     });
 };
+
+export const getMessageIos = () => {
+    const releaseNotesFile = AUTOFLIP_DIR + 'release-notes.txt';
+    return fs.readFileSync(releaseNotesFile, 'utf8').toString();
+}
