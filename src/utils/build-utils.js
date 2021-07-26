@@ -65,6 +65,11 @@ export const buildIosProductionReleaseFirebase = () => {
     buildIosRelease(archiveCommand);
 }
 
+export const cleanIos = () => {
+    const command = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean`;
+    executeSpawnCommand(command);
+}
+
 export const buildIosStagingReleaseFirebase = () => {
     const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
     buildIosRelease(archiveCommand);

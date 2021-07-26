@@ -41,6 +41,9 @@ switch (packages.action) {
     case 'ios_sanity':
         BuildUtils.buildIosProductionReleaseFirebase();
         break;
+    case 'ios_clean':
+        BuildUtils.cleanIos();
+        break;
     case 'sentry_android':
         SentryUtils.uploadSourceMapsAndroidToSentry();
         break;

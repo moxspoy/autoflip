@@ -31,6 +31,7 @@ Script  | Description
 `yarn android_clean` | Clean android apps build folder
 `yarn ios_regression` | When you want to build release version in staging mode, send to Firebase App distribution, and notify to Slack
 `yarn ios_sanity` | When you want to build release version in production mode, send to Firebase App distribution, and notify to Slack
+`yarn ios_clean` | Clean ios apps build folder
 `yarn sentry_android` | Upload sourcemaps to Sentry for Android
 `yarn sentry_ios` | Upload sourcemaps to Sentry for iOS
 
