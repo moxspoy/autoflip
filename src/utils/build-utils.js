@@ -1,4 +1,4 @@
-import {executeCommand} from "./cli-utils.js";
+import {executeCommand, executeSyncCommand} from "./cli-utils.js";
 import {isWindows} from "./file-utils.js";
 import dotenv from "dotenv";
 
@@ -66,12 +66,12 @@ export const buildIosProductionStagingFirebase = () => {
     const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`;
     const afterCommand = `node ${autoFlipDirectory}/index-ios.js`;
     console.log("wkwkwkwk", "prepareCommand")
-    executeCommand(prepareCommand);
+    executeSyncCommand(prepareCommand);
     console.log("wkwkwkwk", "archiveCommand")
-    executeCommand(archiveCommand);
+    executeSyncCommand(archiveCommand);
     console.log("wkwkwkwk", "exportIPACommand")
-    executeCommand(exportIPACommand);
+    executeSyncCommand(exportIPACommand);
     console.log("wkwkwkwk", "afterCommand")
-    executeCommand(afterCommand);
+    executeSyncCommand(afterCommand);
 }
 

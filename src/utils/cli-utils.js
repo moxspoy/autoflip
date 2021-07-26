@@ -1,4 +1,4 @@
-import {exec} from "child_process";
+import {exec, execSync} from "child_process";
 import minimist from 'minimist';
 import dotenv from "dotenv";
 
@@ -34,6 +34,15 @@ Start executing...
 export const executeCommand = (command) => {
     if (command) {
         const executor = exec(command);
+        executor.stdout.on("data", function(res) {
+            console.log(res);
+        });
+    }
+}
+
+export const executeSyncCommand = (command) => {
+    if (command) {
+        const executor = execSync(command);
         executor.stdout.on("data", function(res) {
             console.log(res);
         });
