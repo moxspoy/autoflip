@@ -42,10 +42,7 @@ export const executeCommand = (command) => {
 
 export const executeSyncCommand = (command) => {
     if (command) {
-        const executor = execSync(command);
-        executor.stdout.on("data", function(res) {
-            console.log(res);
-        });
+        execSync(command);
     }
 }
 
