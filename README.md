@@ -13,7 +13,7 @@ existing deployment tools (such as Codemagic or CircleCI) because we have stages
 by those existing tools. We want to make full control to make our deployment run smoothly,
 
 ## Prerequisites
-You must be able to build the flip mobile app project manually (XCode, Java, Android SDK, and so on)
+You must be able to build the flip mobile app project manually (I assume that XCode, Java, Android SDK, and so on are installed on your system)
 
 
 ## Usage
