@@ -1,4 +1,4 @@
-import {executeCommand} from "./cli-utils.js";
+import {executeCommand, executeSpawnCommand} from "./cli-utils.js";
 import {isWindows} from "./file-utils.js";
 import dotenv from "dotenv";
 
@@ -16,37 +16,37 @@ const getEnvironmentProduction = () => isWindowsOS ? ` SET ${productionEnv} && `
 
 export const buildAndroidStagingRelease = () => {
     const command =
-        `cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebug = () => {
     const command =
-        `cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugAndNotifySlack = () => {
     const command =
-        `cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugReleaseAndNotifySlack = () => {
     const command =
-        `cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugSlack = () => {
     const command =
-        `cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidProductionReleaseDebugSlack = () => {
     const command =
-        `cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
@@ -60,11 +60,28 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
     executeCommand(buildCommand);
 }
 
-export const buildIosProductionStagingFirebase = () => {
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
+export const buildIosProductionReleaseFirebase = () => {
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    buildIosRelease(archiveCommand);
+}
+
+export const cleanIos = () => {
+    const command = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean`;
+    executeSpawnCommand(command);
+}
+
+export const buildIosStagingReleaseFirebase = () => {
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    buildIosRelease(archiveCommand);
+}
+
+export const buildIosRelease = (archiveCommand) => {
+    const yarnCommand = `cd ${flipMobileDirectory} && yarn install && cd ${autoFlipDirectory}`;
+    const patchCommand = `cp ./patch/RCTUIImageViewAnimated.m ${flipMobileDirectory}node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m`;
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/ExportOptions.plist -exportPath $PWD/build`
     const command =
-        `cd ${iosProjectDirectory} && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
-    executeCommand(command);
+        `${yarnCommand} && ${patchCommand} && cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
+    console.log(command)
+    executeSpawnCommand(command);
 }
 

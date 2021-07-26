@@ -35,8 +35,14 @@ switch (packages.action) {
     case 'production_release_and_debug_slack':
         BuildUtils.buildAndroidProductionReleaseDebugSlack();
         break;
-    case 'ios_staging_firebase':
-        BuildUtils.buildIosProductionStagingFirebase();
+    case 'ios_regression':
+        BuildUtils.buildIosStagingReleaseFirebase();
+        break;
+    case 'ios_sanity':
+        BuildUtils.buildIosProductionReleaseFirebase();
+        break;
+    case 'ios_clean':
+        BuildUtils.cleanIos();
         break;
     case 'sentry_android':
         SentryUtils.uploadSourceMapsAndroidToSentry();

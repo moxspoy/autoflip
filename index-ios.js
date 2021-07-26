@@ -15,10 +15,14 @@ import * as CLIUtils from "./src/utils/cli-utils.js";
     if (files && files.length) {
         try {
             await FirebaseService.upload(files, true);
+            const data = SlackService.getMessageIos();
             const text = `
-Hallo! new iOS application (1.27.0-rc01) has been uploaded into Firebase App Distribution.
-Check it out guys!        
-        `
+Hallo!
+New iOS application has been uploaded into Firebase App Distribution.
+Check it out guys!
+---------------
+${data}   
+`
             await SlackService.sendWebHook(text, true);
             CLIUtils.showSuccessMessage();
         } catch (e) {
