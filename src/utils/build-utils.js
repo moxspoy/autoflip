@@ -60,11 +60,20 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
     executeCommand(buildCommand);
 }
 
-export const buildIosProductionStagingFirebase = () => {
+export const buildIosProductionReleaseFirebase = () => {
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    buildIosRelease(archiveCommand);
+}
+
+export const buildIosStagingReleaseFirebase = () => {
+    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    buildIosRelease(archiveCommand);
+}
+
+export const buildIosRelease = (archiveCommand) => {
     const yarnCommand = `cd ${flipMobileDirectory} && yarn install && cd ${autoFlipDirectory}`;
     const patchCommand = `cp ./patch/RCTUIImageViewAnimated.m ${flipMobileDirectory}node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m`;
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build`
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/ExportOptions.plist -exportPath $PWD/build`
     const command =
         `${yarnCommand} && ${patchCommand} && cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
     console.log(command)
