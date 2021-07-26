@@ -1,3 +1,5 @@
+![workflow](https://github.com/mpxspoy/autoflip/actions/workflows/node.js.yml/badge.svg)
+
 # Autoflip
 Productivity tools to automate deployment in Flip mobile apps
 
