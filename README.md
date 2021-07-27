@@ -1,4 +1,4 @@
-![workflow](https://github.com/mpxspoy/autoflip/actions/workflows/node.js.yml/badge.svg)
+![workflow](https://img.shields.io/github/workflow/status/moxspoy/autoflip/Node.js%20CI)
 
 # Autoflip
 Productivity tools to automate deployment in Flip mobile apps
