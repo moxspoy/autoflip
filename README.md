@@ -1,7 +1,12 @@
-![workflow](https://img.shields.io/github/workflow/status/moxspoy/autoflip/Node.js%20CI)
+
+<a href="https://flip.id/">
+<img src="https://i.ibb.co/nmw3Z22/autoflip-compressed-removebg-preview.png" alt="autoflip-compressed-removebg-preview" border="0" height="200" style="margin-left: -25px">
+</a>
 
 # Autoflip
 Productivity tools to automate deployment in Flip mobile apps
+
+![workflow](https://img.shields.io/github/workflow/status/moxspoy/autoflip/Node.js%20CI)
 
 ## Motivation
 Our current development process is a bit painful. Why?
