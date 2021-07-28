@@ -17,37 +17,37 @@ const cleanAndroidCommand = ` ./gradlew clean `;
 
 export const buildAndroidStagingRelease = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebug = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugAndNotifySlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugReleaseAndNotifySlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugSlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidProductionReleaseDebugSlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
