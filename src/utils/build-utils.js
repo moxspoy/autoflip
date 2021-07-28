@@ -13,6 +13,7 @@ const stagingEnv = ` ENVFILE=.env.staging `;
 const productionEnv = ` ENVFILE=.env.production `;
 const getEnvironmentStaging = () => isWindowsOS ? ` SET ${stagingEnv} && ` : stagingEnv;
 const getEnvironmentProduction = () => isWindowsOS ? ` SET ${productionEnv} && ` : productionEnv;
+const cleanAndroidCommand = ` ./gradlew clean `;
 
 export const buildAndroidStagingRelease = () => {
     const command =
@@ -34,19 +35,19 @@ export const buildAndroidStagingDebugAndNotifySlack = () => {
 
 export const buildAndroidStagingDebugReleaseAndNotifySlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidStagingDebugSlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
 export const buildAndroidProductionReleaseDebugSlack = () => {
     const command =
-        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
+        `cd ${flipMobileDirectory} && yarn && cd ${androidProjectDirectory} && ${cleanAndroidCommand} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
 }
 
