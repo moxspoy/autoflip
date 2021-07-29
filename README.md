@@ -28,7 +28,7 @@ You must be able to build the flip mobile app project manually (I assume that XC
 2. `yarn install`
 3. Ask `.env` file for this project to eqi@flip.id, and then change `FLIP_MOBILE_DIR` and `AUTOFLIP_DIR`
 4. If you want to release ios, you need to add Firebase into your cli. `npm install -g firebase-tools`. Then login using `firebase login`
-5. Edit release notes in `release-notes.txt`
+5. Edit release notes in `release-notes.js`
 6. You can run following scripts
 
 Script  | Description
