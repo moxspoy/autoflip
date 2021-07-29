@@ -13,10 +13,6 @@ variables:
 
 
 before_script:
-  - echo "WKWK"
-  - export CLICKUP=$CLICKUP
-  - echo $CLICKUP
-  - echo $GITLAB_PRIVATE_TOKEN
   - yarn install
 
 create:merge-request:
@@ -28,6 +24,9 @@ create:merge-request:
     - master
     - tags
   script:
+    - echo $GIT_USER
+    - echo "$GIT_USER"
+    - echo $GITLAB_PRIVATE_TOKEN
     - gitlab_auto_mr -t master -c WIP -d .gitlab/merge_request_templates/merge_request.md --private-token $GITLAB_PRIVATE_TOKEN -r -s --use-issue-name
 
 lint:
@@ -39,6 +38,7 @@ lint:
       - $CI_COMMIT_REF_NAME =~ /^master/
   script:
     - yarn lint
+
 tests:unit:
   stage: test
   only:
@@ -47,4 +47,8 @@ tests:unit:
     variables:
       - $CI_COMMIT_REF_NAME =~ /^master/
   script:
+    - export CLICKUP=$CLICKUP
+    - echo $CLICKUP
+    - echo $GITLAB_PRIVATE_TOKEN
+    - echo 'WKWK'
     - yarn test --silent
