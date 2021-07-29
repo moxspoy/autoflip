@@ -2,6 +2,7 @@ import {WebClient} from "@slack/web-api";
 import fs from "fs";
 import {IncomingWebhook} from "@slack/webhook";
 import dotenv from "dotenv";
+import {buildReleaseNote} from "../utils/message-utils.js";
 
 // Read a token from the environment variables
 dotenv.config();
@@ -28,13 +29,12 @@ export const sendMessageAndUpload = async (attachments) => {
     try {
         const urls = [];
 
-        const releaseNotesFile = AUTOFLIP_DIR + 'release-notes.txt';
         for (let i = 0; i < attachments.length; i++) {
             const url = await uploadSingleFile(attachments[i]);
             urls.push(url);
         }
 
-        const data = fs.readFileSync(releaseNotesFile, 'utf8').toString();
+        const data = await buildReleaseNote();
         const linkableArtifactsMessage = getArtifactMessage(attachments, urls);
         const message = `
 ${data}
@@ -81,8 +81,7 @@ export const uploadSingleFile = async (file) => {
 
 export const sendWebHook = async (text, isIos) => {
     if (isIos) {
-        const regressionWebhook = WEBHOOK_REGRESSION_CHANNEL;
-        webhook = new IncomingWebhook(regressionWebhook);
+        webhook = new IncomingWebhook(WEBHOOK_REGRESSION_CHANNEL);
     }
     await webhook.send({
         text,
@@ -90,7 +89,6 @@ export const sendWebHook = async (text, isIos) => {
     });
 };
 
-export const getMessageIos = () => {
-    const releaseNotesFile = AUTOFLIP_DIR + 'release-notes.txt';
-    return fs.readFileSync(releaseNotesFile, 'utf8').toString();
+export const getMessageIos = async() => {
+    return await buildReleaseNote();
 }

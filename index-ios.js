@@ -15,7 +15,7 @@ import * as CLIUtils from "./src/utils/cli-utils.js";
     if (files && files.length) {
         try {
             await FirebaseService.upload(files, true);
-            const data = SlackService.getMessageIos();
+            const data = await SlackService.getMessageIos();
             const text = `
 Hallo!
 New iOS application has been uploaded into Firebase App Distribution.
