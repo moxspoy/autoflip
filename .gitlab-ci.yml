@@ -13,9 +13,8 @@ variables:
 
 
 before_script:
-  - touch .env
-  - echo "CLICKUP=$CLICKUP" >> .env
-  - cat .env
+  - chmod +x ./setup_env.sh
+  - ./setup_env.sh
   - yarn install
 
 create:merge-request:
