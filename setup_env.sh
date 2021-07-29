@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-echo CLICKUP=$CLICKUP >> .env
+cat  << EOF
+CLICKUP=${CLICKUP}
+EOF
