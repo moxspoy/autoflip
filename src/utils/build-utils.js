@@ -70,7 +70,6 @@ export const buildIosRelease = (archiveCommand, isStaging) => {
     executeSpawnCommand(command);
 };
 
-
 export const buildIosProductionReleaseFirebase = () => {
     const archiveCommand = 'xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive';
     buildIosRelease(archiveCommand);
