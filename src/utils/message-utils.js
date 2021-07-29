@@ -1,24 +1,24 @@
 import ReleaseNotes from '../../release-notes.js';
 import * as ClickupService from '../services/clickup.js';
 
-export async function buildReleaseNote() {
-    const whatsNewMessage = await buildMessage("What's new", ReleaseNotes.whatNew);
-    const changelogMessage = await buildMessage("Changelog", ReleaseNotes.changelog);
-    const notifyMessage = buildNotificationMessage();
-    return `
-${ReleaseNotes.defaultProjectName}    
-\`${ReleaseNotes.productType}\`  
-${ReleaseNotes.environment}    
-${ReleaseNotes.version}
+export const getTaskIdFromUrl = (url) => {
+    const splitted = url.split('/');
+    return splitted[splitted.length - 1];
+};
 
-${whatsNewMessage}
-${changelogMessage}  
-${notifyMessage}
+export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
-`;
-}
+export const buildSingleTask = async (url) => {
+    const id = getTaskIdFromUrl(url);
+    const taskName = await ClickupService.getTaskName(id);
+    return buildHyperlink(url, taskName);
+};
 
 export async function buildMessage(title, label) {
+    if (!label) {
+        return '';
+    }
+
     let message = '\n';
     if (typeof label === 'string') {
         if (label.startsWith('http')) {
@@ -28,7 +28,7 @@ export async function buildMessage(title, label) {
     }
 
     for (const item of label) {
-        message = message + " :white_small_square: " + await buildSingleTask(item) + '\n';
+        message = `${message} :white_small_square: ${await buildSingleTask(item)}\n`;
     }
 
     if (!message) {
@@ -37,30 +37,31 @@ export async function buildMessage(title, label) {
     return `
 *${title}*
 ${message}
-
 `;
 }
-
-export const buildSingleTask = async (url) => {
-    const id = getTaskIdFromUrl(url);
-    const taskName =  await ClickupService.getTaskName(id);
-    return buildHyperlink(url, taskName);
-}
-
-export const getTaskIdFromUrl = (url) => {
-    const splitted = url.split("/");
-    return splitted[splitted.length - 1];
-}
-
-export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
 export const buildNotificationMessage = () => {
     if (!ReleaseNotes.notifyTo) {
         return '';
     }
-    let message = '\n';
+    let message = '';
     for (const user of ReleaseNotes.notifyTo) {
-        message = message + ' ' + user;
+        message = `${message} ${user}`;
     }
     return message;
+};
+
+export async function buildReleaseNote() {
+    const whatsNewMessage = await buildMessage('What\'s new', ReleaseNotes.whatNew);
+    const changelogMessage = await buildMessage('Changelog', ReleaseNotes.changelog);
+    const notifyMessage = buildNotificationMessage();
+    return `
+${ReleaseNotes.defaultProjectName}    
+\`${ReleaseNotes.productType}\`  
+${ReleaseNotes.environment}    
+${ReleaseNotes.version}
+${whatsNewMessage}
+${changelogMessage}  
+${notifyMessage}
+`;
 }

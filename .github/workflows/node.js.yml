@@ -33,3 +33,4 @@ jobs:
         echo CLICKUP=${{secrets.CLICKUP}} >> .env
         cat .env
     - run: yarn test
+    - run: yarn lint

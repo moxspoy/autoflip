@@ -1,4 +1,4 @@
-import {SLACK_USER} from "./src/constants/index.js";
+import SLACK_USER from "./src/constants/index.js";
 
 export default {
     defaultProjectName: "Flip",

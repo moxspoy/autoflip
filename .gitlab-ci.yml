@@ -1,0 +1,38 @@
+image: node:latest
+
+stages:
+  - pre
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+variables:
+  DOCKER_DRIVER: overlay2
+
+
+before_script:
+  - chmod +x ./setup_env.sh
+  - ./setup_env.sh
+  - yarn install
+
+lint:
+  stage: test
+  only:
+    - merge_requests
+  except:
+    variables:
+      - $CI_COMMIT_REF_NAME =~ /^master/
+  script:
+    - yarn lint
+
+tests:unit:
+  stage: test
+  only:
+    - merge_requests
+  except:
+    variables:
+      - $CI_COMMIT_REF_NAME =~ /^master/
+  script:
+    - yarn test --silent
