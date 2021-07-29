@@ -1,4 +1,4 @@
-import {exec, execSync, spawn} from 'child_process';
+import { exec, execSync, spawn } from 'child_process';
 
 export const showSuccessMessage = () => {
     console.log(`

@@ -1,8 +1,8 @@
 import minimist from 'minimist';
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 import * as CLIUtils from './cli-utils.js';
-import {BuildUtils, SentryUtils} from './index.js';
+import { BuildUtils, SentryUtils } from './index.js';
 
 dotenv.config();
 

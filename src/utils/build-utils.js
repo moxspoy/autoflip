@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import {executeCommand, executeSpawnCommand} from './cli-utils.js';
-import {isWindows} from './file-utils.js';
+import { executeCommand, executeSpawnCommand } from './cli-utils.js';
+import { isWindows } from './file-utils.js';
 
 dotenv.config();
 

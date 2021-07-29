@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import {executeCommand} from './cli-utils.js';
+import { executeCommand } from './cli-utils.js';
 
 dotenv.config();
 

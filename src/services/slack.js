@@ -1,8 +1,8 @@
-import {WebClient} from '@slack/web-api';
+import { WebClient } from '@slack/web-api';
 import fs from 'fs';
-import {IncomingWebhook} from '@slack/webhook';
+import { IncomingWebhook } from '@slack/webhook';
 import dotenv from 'dotenv';
-import {buildReleaseNote} from '../utils/message-utils.js';
+import { buildReleaseNote } from '../utils/message-utils.js';
 
 // Read a token from the environment variables
 dotenv.config();

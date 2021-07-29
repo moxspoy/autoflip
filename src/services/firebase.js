@@ -1,9 +1,9 @@
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
-import {buildReleaseNote} from '../utils/message-utils.js';
-import {getIosArtifact} from '../utils/file-utils.js';
+import { buildReleaseNote } from '../utils/message-utils.js';
+import { getIosArtifact } from '../utils/file-utils.js';
 
 dotenv.config();
 
