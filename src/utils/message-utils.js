@@ -19,6 +19,10 @@ ${notifyMessage}
 }
 
 export async function buildMessage (title, label) {
+    if (!label) {
+        return '';
+    }
+
     let message = '\n';
     if (typeof label === 'string') {
         if (label.startsWith('http')) {
