@@ -1,9 +1,9 @@
 import ReleaseNotes from '../../release-notes.js';
 import * as ClickupService from '../services/clickup.js';
 
-export async function buildReleaseNote() {
-    const whatsNewMessage = await buildMessage("What's new", ReleaseNotes.whatNew);
-    const changelogMessage = await buildMessage("Changelog", ReleaseNotes.changelog);
+export async function buildReleaseNote () {
+    const whatsNewMessage = await buildMessage('What\'s new', ReleaseNotes.whatNew);
+    const changelogMessage = await buildMessage('Changelog', ReleaseNotes.changelog);
     const notifyMessage = buildNotificationMessage();
     return `
 ${ReleaseNotes.defaultProjectName}    
@@ -18,7 +18,7 @@ ${notifyMessage}
 `;
 }
 
-export async function buildMessage(title, label) {
+export async function buildMessage (title, label) {
     let message = '\n';
     if (typeof label === 'string') {
         if (label.startsWith('http')) {
@@ -28,7 +28,7 @@ export async function buildMessage(title, label) {
     }
 
     for (const item of label) {
-        message = message + " :white_small_square: " + await buildSingleTask(item) + '\n';
+        message = message + ' :white_small_square: ' + await buildSingleTask(item) + '\n';
     }
 
     if (!message) {
@@ -43,14 +43,14 @@ ${message}
 
 export const buildSingleTask = async (url) => {
     const id = getTaskIdFromUrl(url);
-    const taskName =  await ClickupService.getTaskName(id);
+    const taskName = await ClickupService.getTaskName(id);
     return buildHyperlink(url, taskName);
-}
+};
 
 export const getTaskIdFromUrl = (url) => {
-    const splitted = url.split("/");
+    const splitted = url.split('/');
     return splitted[splitted.length - 1];
-}
+};
 
 export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
@@ -63,4 +63,4 @@ export const buildNotificationMessage = () => {
         message = message + ' ' + user;
     }
     return message;
-}
+};

@@ -1,6 +1,6 @@
-import {executeCommand, executeSpawnCommand} from "./cli-utils.js";
-import {isWindows} from "./file-utils.js";
-import dotenv from "dotenv";
+import {executeCommand, executeSpawnCommand} from './cli-utils.js';
+import {isWindows} from './file-utils.js';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -9,47 +9,46 @@ const androidProjectDirectory = flipMobileDirectory + 'android';
 const iosProjectDirectory = flipMobileDirectory + 'ios';
 const autoFlipDirectory = process.cwd();
 const isWindowsOS = isWindows();
-const stagingEnv = ` ENVFILE=.env.staging `;
-const productionEnv = ` ENVFILE=.env.production `;
+const stagingEnv = ' ENVFILE=.env.staging ';
+const productionEnv = ' ENVFILE=.env.production ';
 const getEnvironmentStaging = () => isWindowsOS ? ` SET ${stagingEnv} && ` : stagingEnv;
 const getEnvironmentProduction = () => isWindowsOS ? ` SET ${productionEnv} && ` : productionEnv;
-const cleanAndroidCommand = ` ./gradlew clean `;
 
 export const buildAndroidStagingRelease = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidStagingDebug = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ENVFILE=.env.staging ./gradlew assembleStagingDebug`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidStagingDebugAndNotifySlack = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidStagingDebugReleaseAndNotifySlack = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && ${getEnvironmentStaging()} ./gradlew assembleStagingRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidStagingDebugSlack = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentStaging()} ./gradlew assembleStagingDebug && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidProductionReleaseDebugSlack = () => {
     const command =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionDebug && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(command);
-}
+};
 
 export const buildAndroidProductionReleaseOppoSlack = () => {
     const copyManifestCommand = `cp ./patch/AndroidManifest.xml ${androidProjectDirectory}/app/src/main/AndroidManifest.xml`;
@@ -59,30 +58,29 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
     const buildCommand =
         `cd ${flipMobileDirectory} && yarn && yarn clean_android_production && cd ${androidProjectDirectory} && ${getEnvironmentProduction()} ./gradlew assembleProductionRelease && node ${autoFlipDirectory}/index.js`;
     executeCommand(buildCommand);
-}
+};
 
 export const buildIosProductionReleaseFirebase = () => {
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    const archiveCommand = 'xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive';
     buildIosRelease(archiveCommand);
-}
+};
 
 export const cleanIos = () => {
-    const command = `xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean`;
+    const command = 'xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean';
     executeSpawnCommand(command);
-}
+};
 
 export const buildIosStagingReleaseFirebase = () => {
-    const archiveCommand = `xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive`;
+    const archiveCommand = 'xcodebuild -workspace FlipApp.xcworkspace -scheme "FlipApp - Staging" -sdk iphoneos -configuration Release archive -archivePath flip.xcarchive';
     buildIosRelease(archiveCommand);
-}
+};
 
 export const buildIosRelease = (archiveCommand) => {
     const yarnCommand = `cd ${flipMobileDirectory} && yarn install && cd ${autoFlipDirectory}`;
     const patchCommand = `cp ./patch/RCTUIImageViewAnimated.m ${flipMobileDirectory}node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m`;
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/ExportOptions.plist -exportPath $PWD/build`
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/ExportOptions.plist -exportPath $PWD/build`;
     const command =
         `${yarnCommand} && ${patchCommand} && cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
-    console.log(command)
+    console.log(command);
     executeSpawnCommand(command);
-}
-
+};

@@ -1,15 +1,15 @@
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 export function getAndroidArtifact () {
     const absolute = process.env.FLIP_MOBILE_DIR + 'android/app/build/outputs/';
-    const extension = `.apk`;
+    const extension = '.apk';
     const apks = findFileFromDirectory(absolute, extension);
     if (!apks) {
-        throw new Error("File not found, make sure that you have built the project");
+        throw new Error('File not found, make sure that you have built the project');
     }
     console.log(`Hooray! We got ${apks.length} files`);
     return apks;
@@ -17,21 +17,21 @@ export function getAndroidArtifact () {
 
 export function getIosArtifact () {
     const absolute = process.env.FLIP_MOBILE_DIR + 'ios/build/';
-    const extension = `.ipa`;
+    const extension = '.ipa';
     const ipa = findFileFromDirectory(absolute, extension);
     if (!ipa?.length) {
-        throw new Error("File not found, make sure that you have built the project");
+        throw new Error('File not found, make sure that you have built the project');
     }
-    console.log(`Hooray! We got the files`);
+    console.log('Hooray! We got the files');
     return ipa[0];
 }
 
 const result = [];
 
-export function findFileFromDirectory(startPath, filter) {
+export function findFileFromDirectory (startPath, filter) {
     console.log(`Trying to find ${startPath} file(s) from ${filter}...`);
     if (!fs.existsSync(startPath)) {
-        throw new Error("No directory " + startPath);
+        throw new Error('No directory ' + startPath);
     }
 
     const files = fs.readdirSync(startPath);
@@ -47,6 +47,6 @@ export function findFileFromDirectory(startPath, filter) {
     return result;
 }
 
-export function isWindows() {
-    return process.platform === "win32";
+export function isWindows () {
+    return process.platform === 'win32';
 }

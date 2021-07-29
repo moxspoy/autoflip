@@ -3,5 +3,5 @@ import * as SentryUtils from './sentry-utils.js';
 
 export {
     BuildUtils,
-    SentryUtils,
-}
+    SentryUtils
+};
