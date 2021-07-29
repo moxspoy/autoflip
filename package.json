@@ -12,7 +12,7 @@
     "android_regression": "node src/utils/acceptor.js --action staging_release_and_debug_slack",
     "android_sanity": "node src/utils/acceptor.js --action production_release_and_debug_slack",
     "android_oppo": "node src/utils/acceptor.js --action production_release_oppo_slack",
-    "staging_debug_slack": "node src/utils/acceptor.js --action staging_debug_slack",
+    "android_staging_debug_slack": "node src/utils/acceptor.js --action staging_debug_slack",
     "ios_regression": "node src/utils/acceptor.js --action ios_regression",
     "ios_sanity": "node src/utils/acceptor.js --action ios_sanity",
     "move_to_android_project": "node src/utils/acceptor.js --action move_to_android_project",
