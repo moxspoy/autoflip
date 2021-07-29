@@ -2,13 +2,13 @@ import * as MessageUtil from '../src/utils/message-utils.js';
 
 const validClickUpUrl = 'https://app.clickup.com/t/9nzg9w';
 
-test('assure the task id from url', () => {
+test('ensure the task id from url', () => {
     const id = MessageUtil.getTaskIdFromUrl(validClickUpUrl);
     const expectedTaskId = '9nzg9w';
     expect(id).toBe(expectedTaskId);
 });
 
-test('assure the task id from url', async () => {
+test('ensure the task name from url', async () => {
     const formattedTask = await MessageUtil.buildSingleTask(validClickUpUrl);
     const expectedFormat = `<https://app.clickup.com/t/9nzg9w|[Mobile] Redesign Bundle Transfer>`;
     expect(formattedTask).toBe(expectedFormat);
