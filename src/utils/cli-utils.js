@@ -1,13 +1,4 @@
 import {exec, execSync, spawn} from "child_process";
-import minimist from 'minimist';
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const packages = minimist(process.argv.slice(2));
-const flipMobileDirectory = process.env.FLIP_MOBILE_DIR;
-const androidProjectDirectory = flipMobileDirectory + 'android';
-const autoFlipDirectory = process.cwd();
 
 export const showSuccessMessage = () => {
     console.log(`

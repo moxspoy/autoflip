@@ -41,20 +41,20 @@ ${message}
 `;
 }
 
-const buildSingleTask = async (url) => {
+export const buildSingleTask = async (url) => {
     const id = getTaskIdFromUrl(url);
     const taskName =  await ClickupService.getTaskName(id);
     return buildHyperlink(url, taskName);
 }
 
-const getTaskIdFromUrl = (url) => {
+export const getTaskIdFromUrl = (url) => {
     const splitted = url.split("/");
     return splitted[splitted.length - 1];
 }
 
-const buildHyperlink = (url, message) => `<${url}|${message}>`;
+export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
-const buildNotificationMessage = () => {
+export const buildNotificationMessage = () => {
     if (!ReleaseNotes.notifyTo) {
         return '';
     }

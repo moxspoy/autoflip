@@ -1,7 +1,18 @@
-function sum(a, b) {
-    return a + b;
-}
+import * as MessageUtil from '../src/utils/message-utils.js';
 
-test('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
+const validClickUpUrl = 'https://app.clickup.com/t/9nzg9w';
+
+test('assure the task id from url', () => {
+    const id = MessageUtil.getTaskIdFromUrl(validClickUpUrl);
+    const expectedTaskId = '9nzg9w';
+    expect(id).toBe(expectedTaskId);
 });
+
+test('assure the task id from url', async () => {
+    const formattedTask = await MessageUtil.buildSingleTask(validClickUpUrl);
+    const expectedFormat = `<https://app.clickup.com/t/9nzg9w|[Mobile] Redesign Bundle Transfer>`;
+    console.warn(formattedTask);
+    expect(formattedTask).toBe(expectedFormat);
+});
+
+
