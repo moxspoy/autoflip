@@ -26,15 +26,17 @@ You must be able to build the flip mobile app project manually (I assume that XC
 ## Usage
 1. Clone this project
 2. `yarn install`
-3. Ask `.env` file for this project to eqi@flip.id
-4. Edit release notes in `release-notes.txt`
-5. You can run following scripts
+3. Ask `.env` file for this project to eqi@flip.id, and then change `FLIP_MOBILE_DIR` and `AUTOFLIP_DIR`
+4. If you want to release ios, you need to add Firebase into your cli. `npm install -g firebase-tools`. Then login using `firebase login`
+5. Edit release notes in `release-notes.txt`
+6. You can run following scripts
 
 Script  | Description
 ------------- | -------------
 `yarn android_regression`  | When you want to build release version in staging mode and send to Slack
 `yarn android_sanity` | When you want to build release version in production mode and send to Slack
 `yarn android_oppo` | Build android apps for oppo and notify to Slack
+`yarn android_staging_debug_slack` | Build android apps staging debug only and notify to Slack
 `yarn android_clean` | Clean android apps build folder
 `yarn ios_regression` | When you want to build release version in staging mode, send to Firebase App distribution, and notify to Slack
 `yarn ios_sanity` | When you want to build release version in production mode, send to Firebase App distribution, and notify to Slack
