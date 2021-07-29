@@ -11,7 +11,6 @@ test('assure the task id from url', () => {
 test('assure the task id from url', async () => {
     const formattedTask = await MessageUtil.buildSingleTask(validClickUpUrl);
     const expectedFormat = `<https://app.clickup.com/t/9nzg9w|[Mobile] Redesign Bundle Transfer>`;
-    console.warn(formattedTask);
     expect(formattedTask).toBe(expectedFormat);
 });
 
