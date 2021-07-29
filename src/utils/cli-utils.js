@@ -1,10 +1,10 @@
-import {exec, execSync, spawn} from "child_process";
+import { exec, execSync, spawn } from 'child_process';
 
 export const showSuccessMessage = () => {
     console.log(`
 Alhamdulillah gans, prosesnya selesai dari mulai build sampai upload :))
     `);
-}
+};
 
 export const openingMessage = () => {
     console.log(`
@@ -20,45 +20,45 @@ export const openingMessage = () => {
 Start executing...          
                                                                                  
     `);
-}
+};
 
 export const executeCommand = (command) => {
     if (command) {
         const executor = exec(command);
-        executor.stdout.on("data", function(res) {
+        executor.stdout.on('data', (res) => {
             console.log(res);
         });
     }
-}
+};
 
 export const executeSyncCommand = (command) => {
     if (command) {
         execSync(command);
     }
-}
+};
 
-export const executeSpawnCommand = (command, callback) => {
+export const executeSpawnCommand = (command) => {
     if (command) {
         const executor = spawn(command, {
             shell: true,
         });
-        executor.stdout.on("data", function(res) {
+        executor.stdout.on('data', (res) => {
             console.log(res.toString());
         });
-        executor.on("exit", function() {
-            console.log("autoflip_log", "complete spawn " + command);
+        executor.on('exit', () => {
+            console.log('autoflip_log', `complete spawn ${command}`);
         });
         executor.stderr.on('data', (data) => {
             console.error(`child stderr:\n${data}`);
         });
     }
-}
+};
 
 export const move = (command) => {
     if (command) {
         const executor = exec(command);
-        executor.stdout.on("data", function(res) {
+        executor.stdout.on('data', (res) => {
             console.log(res);
         });
     }
-}
+};
