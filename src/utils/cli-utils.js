@@ -11,7 +11,7 @@ const autoFlipDirectory = process.cwd();
 
 export const showSuccessMessage = () => {
     console.log(`
-Alhamdulillah gans, prosesnya sukses dari mulai build sampai upload :))
+Alhamdulillah gans, prosesnya selesai dari mulai build sampai upload :))
     `);
 }
 
