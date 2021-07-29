@@ -10,11 +10,9 @@ ${ReleaseNotes.defaultProjectName}
 \`${ReleaseNotes.productType}\`  
 ${ReleaseNotes.environment}    
 ${ReleaseNotes.version}
-
 ${whatsNewMessage}
 ${changelogMessage}  
 ${notifyMessage}
-
 `;
 }
 
@@ -41,7 +39,6 @@ export async function buildMessage (title, label) {
     return `
 *${title}*
 ${message}
-
 `;
 }
 
@@ -62,7 +59,7 @@ export const buildNotificationMessage = () => {
     if (!ReleaseNotes.notifyTo) {
         return '';
     }
-    let message = '\n';
+    let message = '';
     for (const user of ReleaseNotes.notifyTo) {
         message = message + ' ' + user;
     }
