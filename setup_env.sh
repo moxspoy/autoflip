@@ -2,4 +2,5 @@
 
 cat  << EOF
 CLICKUP=${CLICKUP}
+TEST=TEST
 EOF
