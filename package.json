@@ -22,7 +22,7 @@
     "ios_clean": "node src/utils/acceptor.js --action ios_clean",
     "sentry_android": "node src/utils/acceptor.js --action sentry_android",
     "sentry_ios": "node src/utils/acceptor.js --action sentry_ios",
-    "test": "jest",
+    "test": "yarn jest",
     "lint": "npx eslint src"
   },
   "dependencies": {
