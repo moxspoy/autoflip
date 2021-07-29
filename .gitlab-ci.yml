@@ -15,6 +15,8 @@ variables:
 before_script:
   - yarn install
   - export CLICKUP="$CLICKUP"
+  - echo "$CLICKUP"
+  - echo "$GITLAB_PRIVATE_TOKEN"
 
 create:merge-request:
   image: registry.gitlab.com/gitlab-automation-toolkit/gitlab-auto-mr
