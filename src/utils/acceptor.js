@@ -1,14 +1,14 @@
 import minimist from 'minimist';
 import {execSync} from 'child_process';
-import * as CLIUtils from './cli-utils.js';
 import dotenv from 'dotenv';
+import * as CLIUtils from './cli-utils.js';
 import {BuildUtils, SentryUtils} from './index.js';
 
 dotenv.config();
 
 const packages = minimist(process.argv.slice(2));
 const flipMobileDirectory = process.env.FLIP_MOBILE_DIR;
-const androidProjectDirectory = flipMobileDirectory + 'android';
+const androidProjectDirectory = `${flipMobileDirectory}android`;
 const autoFlipDirectory = process.cwd();
 
 switch (packages.action) {

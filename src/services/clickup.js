@@ -11,6 +11,6 @@ export const getTaskName = async (id) => {
         const response = await client.getTask(id);
         return response?.data?.name;
     } catch (e) {
-        console.log('Failed gans, because ' + e.message);
+        console.log(`Failed gans, because ${e.message}`);
     }
 };

@@ -31,6 +31,7 @@
     "@slack/webhook": "^6.0.0",
     "clickup-sdk": "git+https://github.com/moxspoy/clickup-sdk.git",
     "dotenv": "^10.0.0",
+    "eslint-config-airbnb": "^18.2.1",
     "minimist": "^1.2.5"
   },
   "devDependencies": {
