@@ -3,8 +3,8 @@ import ClickupSdk from "clickup-sdk";
 
 // Read a token from the environment variables
 dotenv.config();
-const {CLICKUP_PERSONAL_TOKEN} = process.env;
-const client = ClickupSdk(CLICKUP_PERSONAL_TOKEN);
+const {CLICKUP} = process.env;
+const client = ClickupSdk(CLICKUP);
 
 export const getTaskName = async (id) => {
     try {
