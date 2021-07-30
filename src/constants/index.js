@@ -1,6 +1,6 @@
 const SLACK_USER = {
     EQI: '<@UP4JV6K9S>',
-    ED: '<@>',
+    ED: '<@U010T6N2TFA>',
     ADIT: '<@U01GKP0BREZ>',
     FADEL: '<@UNNKADQR0>',
     IZZUDDIIN: '<@U3YNTB8J3>',
