@@ -19,7 +19,7 @@ export async function buildMessage(title, label) {
         return '';
     }
 
-    let message = '\n';
+    let message = '';
     if (typeof label === 'string') {
         if (label.startsWith('http')) {
             message = await buildSingleTask(label);
@@ -27,8 +27,10 @@ export async function buildMessage(title, label) {
         message = label;
     }
 
+    const listSymbol = label.length > 1 ? ':white_small_square:' : '';
+
     for (const item of label) {
-        message = `${message} :white_small_square: ${await buildSingleTask(item)}\n`;
+        message = `${message} ${listSymbol} ${await buildSingleTask(item)}\n`;
     }
 
     if (!message) {
@@ -36,15 +38,14 @@ export async function buildMessage(title, label) {
     }
     return `
 *${title}*
-${message}
-`;
+${message}`;
 }
 
 export const buildNotificationMessage = () => {
-    if (!ReleaseNotes.notifyTo) {
+    if (!ReleaseNotes?.notifyTo) {
         return '';
     }
-    let message = '';
+    let message = 'cc ';
     for (const user of ReleaseNotes.notifyTo) {
         message = `${message} ${user}`;
     }
