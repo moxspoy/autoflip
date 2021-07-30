@@ -53,6 +53,9 @@ export const buildNotificationMessage = () => {
 };
 
 export async function buildReleaseNote() {
+    if (!ReleaseNotes.whatNew && !ReleaseNotes.changelog && !ReleaseNotes.additionalNotes) {
+        throw Error("You must add what's new, changelog, or additional note");
+    }
     const whatsNewMessage = await buildMessage('What\'s new', ReleaseNotes.whatNew);
     const changelogMessage = await buildMessage('Changelog', ReleaseNotes.changelog);
     const notifyMessage = buildNotificationMessage();
