@@ -30,7 +30,11 @@ export async function buildMessage(title, label) {
     const listSymbol = label.length > 1 ? ':white_small_square:' : '';
 
     for (const item of label) {
-        message = `${message} ${listSymbol} ${await buildSingleTask(item)}\n`;
+        if (item.startsWith('http')) {
+            message = `${message} ${listSymbol} ${await buildSingleTask(item)}\n`;
+        } else {
+            message = `${message} ${listSymbol} ${item}\n`;
+        }
     }
 
     if (!message) {
