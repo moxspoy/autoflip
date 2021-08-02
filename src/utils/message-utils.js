@@ -1,15 +1,12 @@
 import ReleaseNotes from '../../release-notes.js';
 import * as ClickupService from '../services/clickup.js';
 
-export const getTaskIdFromUrl = (url) => {
-    const splitted = url.split('/');
-    return splitted[splitted.length - 1];
-};
+// const CLICKUP_ID_REGEX = /[\[](?:[0-9]+[A-Z]|[A-Z]+[0-9])[A-Z0-9]*[\]]/;
 
 export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
 export const buildSingleTask = async (url) => {
-    const id = getTaskIdFromUrl(url);
+    const id = ClickupService.getTaskIdFromUrl(url);
     const taskName = await ClickupService.getTaskName(id);
     return buildHyperlink(url, taskName);
 };

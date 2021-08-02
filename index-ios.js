@@ -9,6 +9,7 @@ import * as SlackService from "./src/services/slack.js";
 import * as FirebaseService from "./src/services/firebase.js";
 import * as CLIUtils from "./src/utils/cli-utils.js";
 import minimist from 'minimist';
+import * as ClickupService from "./src/services/clickup";
 
 const args = minimist(process.argv.slice(2));
 
@@ -27,6 +28,7 @@ Check it out guys!
 ${data}
 `
             await SlackService.sendWebHook(text, true);
+            await ClickupService.updateTaskStatus();
             CLIUtils.showSuccessMessage();
         } catch (e) {
             console.log('huhu failed caused by ' + e.message);
