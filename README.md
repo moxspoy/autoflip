@@ -44,6 +44,19 @@ Script  | Description
 `yarn sentry_android` | Upload sourcemaps to Sentry for Android
 `yarn sentry_ios` | Upload sourcemaps to Sentry for iOS
 
+## Release Notes Description
+The release note file will decide what message that will be sent to Slack or Firebase. 
+
+Property  | Description
+------------- | -------------
+`defaultProjectName`  | Default project name, it can be our primary apps `Flip`, or maybe `Flip Component Documentation`
+`productType` | The product type name, e.g `APK`, `AAB`, or `IPA`
+`environment` | The server environment, e.g `Regression`, `Production`, `Transaction`, `Activation`, `PWF`, etc
+`version` | Version of the apps we will build
+`whatNew` | The title of the task. It can be clickup URL, the id of task, or the raw message. Note that raw message will not be formatted with link
+`changelog` | The format is same with `whatNew`. The only difference is changelog usually will be added after second and the next iteration
+`additionalNotes` | Put the additional information (raw string)
+`notifyTo` | Formatted slack user id, you can notify group or personal user
 
 ## How it works
 When you run the command, it will execute build command (using gradle for Android and xcodebuild for iOS) and will produce the artifact (APK/IPA).
