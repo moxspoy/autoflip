@@ -56,6 +56,9 @@ export const updateTaskListToReadyToTest = async (tasks) => {
 };
 
 export const updateTaskStatus = async () => {
+    if (!ReleaseNotes?.autoUpdateStatusClickUp) {
+        return;
+    }
     await updateTaskListToReadyToTest(ReleaseNotes?.whatNew);
     await updateTaskListToReadyToTest(ReleaseNotes?.changelog);
 };

@@ -14,5 +14,6 @@ export default {
     additionalNotes: "",
     notifyTo: [
         SLACK_USER.ADIT, SLACK_USER.FADEL, SLACK_USER.QA_DOMESTIC
-    ]
+    ],
+    autoUpdateStatusClickUp: true,
 }

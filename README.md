@@ -57,6 +57,7 @@ Property  | Description
 `changelog` | The format is same with `whatNew`. The only difference is changelog usually will be added after second and the next iteration
 `additionalNotes` | Put the additional information (raw string)
 `notifyTo` | Formatted slack user id, you can notify group or personal user
+`autoUpdateStatusClickUp` | If `true`, all clickup id in what's new and changelog will be updated to `Ready to Test`
 
 ## How it works
 When you run the command, it will execute build command (using gradle for Android and xcodebuild for iOS) and will produce the artifact (APK/IPA).
