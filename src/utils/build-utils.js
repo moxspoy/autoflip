@@ -61,7 +61,7 @@ export const cleanIos = () => {
 export const buildIosRelease = (archiveCommand, isStaging) => {
     const yarnCommand = `cd ${flipMobileDirectory} && yarn install && cd ${autoFlipDirectory}`;
     const patchCommand = `cp ./patch/RCTUIImageViewAnimated.m ${flipMobileDirectory}node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m`;
-    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/ExportOptions.plist -exportPath $PWD/build`;
+    const exportIPACommand = `xcodebuild -exportArchive -archivePath ./flip.xcarchive -exportOptionsPlist ${autoFlipDirectory}/patch/ExportOptions.plist -exportPath $PWD/build`;
     let command = `${yarnCommand} && ${patchCommand} && cd ${iosProjectDirectory} && pod install && ${archiveCommand} && ${exportIPACommand} && node ${autoFlipDirectory}/index-ios.js`;
     if (isStaging) {
         command += ' --staging true';
