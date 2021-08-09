@@ -12,6 +12,7 @@ const SLACK_USER = {
     QA_INTERNATIONAL: '@qa-international-transfer',
     QA_CONSUMER_SOLUTION_GROUP: '@qa-consumer-solutions-group',
     QA_DOMESTIC: '@qa-domestic-transfer',
+    QA_BUSINESS_SOLUTIONS: '@qa-business-solutions',
 };
 
 export default SLACK_USER;
