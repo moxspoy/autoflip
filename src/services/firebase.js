@@ -15,7 +15,7 @@ export const upload = async (file, isStaging) => {
     const releaseNote = await buildReleaseNote();
     const filename = 'release-notes.txt';
     fs.writeFileSync(filename, releaseNote);
-    const releaseNotesFile = path.join(process.cwd(), releaseNote);
+    const releaseNotesFile = path.join(process.cwd(), filename);
     const groups = 'B2B QA, Flip QA';
     console.log('Autoflip', `uplading ${file} into firebase`);
     execSync(`firebase --token ${token} appdistribution:distribute ${getIosArtifact()} --app ${appId}  --release-notes-file ${releaseNotesFile} --groups ${groups}`);
