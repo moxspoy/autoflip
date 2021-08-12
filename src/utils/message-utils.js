@@ -59,6 +59,7 @@ export async function buildReleaseNote() {
     }
     const whatsNewMessage = await buildMessage('What\'s new', ReleaseNotes.whatNew);
     const changelogMessage = await buildMessage('Changelog', ReleaseNotes.changelog);
+    const additionalNoteMessage = await buildMessage('Additional Note', ReleaseNotes.additionalNotes);
     const notifyMessage = buildNotificationMessage();
     return `
 ${ReleaseNotes.defaultProjectName}    
@@ -67,6 +68,7 @@ ${ReleaseNotes.environment}
 ${ReleaseNotes.version}
 ${whatsNewMessage}
 ${changelogMessage}  
+${additionalNoteMessage}  
 ${notifyMessage}
 `;
 }
