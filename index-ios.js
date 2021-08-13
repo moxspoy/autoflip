@@ -16,10 +16,11 @@ const args = minimist(process.argv.slice(2));
 (async() => {
     CLIUtils.openingMessage();
     const files = getIosArtifact();
+    const isStaging = args?.staging;
     if (files && files.length) {
         try {
-            await FirebaseService.upload(files, args?.staging);
-            const data = await SlackService.getMessageIos();
+            await FirebaseService.upload(files, isStaging);
+            const data = await SlackService.getMessageIos(isStaging);
             const text = `
 Hallo!
 New iOS application has been uploaded into Firebase App Distribution.

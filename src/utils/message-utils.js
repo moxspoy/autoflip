@@ -1,8 +1,12 @@
+import fs from 'fs';
 import ReleaseNotes from '../../release-notes.js';
 import * as ClickupService from '../services/clickup.js';
+import { DEFAULT_PROJECT_NAME, PRODUCT_TYPE } from '../constants/index.js';
 
 // const CLICKUP_ID_REGEX = /[\[](?:[0-9]+[A-Z]|[A-Z]+[0-9])[A-Z0-9]*[\]]/;
-
+const {
+    FLIP_MOBILE_DIR,
+} = process.env;
 export const buildHyperlink = (url, message) => `<${url}|${message}>`;
 
 export const buildSingleTask = async (url) => {
@@ -53,7 +57,31 @@ export const buildNotificationMessage = () => {
     return message;
 };
 
-export async function buildReleaseNote() {
+const findValueFromFlipMobileEnvironmentVariable = (keyword, isStaging) => {
+    const envFile = isStaging ? 'staging' : 'production';
+    const path = `${FLIP_MOBILE_DIR}.env.${envFile}`;
+    const data = fs.readFileSync(path);
+    const strData = data.toString();
+    const lines = strData.split('\n');
+    let result = '';
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.indexOf(keyword) !== -1) {
+            result = line.split(keyword)[1].replace('=', '');
+        }
+    }
+    return result;
+};
+
+export const getDefaultProjectName = () => DEFAULT_PROJECT_NAME;
+
+export const getProductType = (isAndroid) => (isAndroid ? PRODUCT_TYPE.ANDROID : PRODUCT_TYPE.IOS);
+
+export const getVersion = (isStaging) => findValueFromFlipMobileEnvironmentVariable('VERSION_NAME', isStaging);
+
+export const getEnvironment = (isStaging) => findValueFromFlipMobileEnvironmentVariable('BASE_URL', isStaging);
+
+export async function buildReleaseNote(isStaging, isAndroid) {
     if (!ReleaseNotes.whatNew && !ReleaseNotes.changelog && !ReleaseNotes.additionalNotes) {
         throw Error('You must add what\'s new, changelog, or additional note');
     }
@@ -62,10 +90,10 @@ export async function buildReleaseNote() {
     const additionalNoteMessage = await buildMessage('Additional Note', ReleaseNotes.additionalNotes);
     const notifyMessage = buildNotificationMessage();
     return `
-${ReleaseNotes.defaultProjectName}    
-\`${ReleaseNotes.productType}\`  
-${ReleaseNotes.environment}    
-${ReleaseNotes.version}
+${getDefaultProjectName()}    
+\`${getProductType(isAndroid)}\`  
+Environment: ${getEnvironment(isStaging)}    
+Version: ${getVersion(isStaging)}
 ${whatsNewMessage}
 ${changelogMessage}  
 ${additionalNoteMessage}  
