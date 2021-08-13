@@ -33,10 +33,11 @@ You must be able to build the flip mobile app project manually (I assume that XC
 
 Script  | Description
 ------------- | -------------
+`yarn android_staging_debug_slack` | Build android apps staging debug only and notify to Slack
+`yarn android_staging_release_slack` | Build android apps staging release only and notify to Slack
 `yarn android_regression`  | When you want to build release version in staging mode and send to Slack
 `yarn android_sanity` | When you want to build release version in production mode and send to Slack
 `yarn android_oppo` | Build android apps for oppo and notify to Slack
-`yarn android_staging_debug_slack` | Build android apps staging debug only and notify to Slack
 `yarn android_clean` | Clean android apps build folder
 `yarn ios_regression` | When you want to build release version in staging mode, send to Firebase App distribution, and notify to Slack
 `yarn ios_sanity` | When you want to build release version in production mode, send to Firebase App distribution, and notify to Slack
@@ -49,14 +50,11 @@ The release note file will decide what message that will be sent to Slack or Fir
 
 Property  | Description
 ------------- | -------------
-`defaultProjectName`  | Default project name, it can be our primary apps `Flip`, or maybe `Flip Component Documentation`
-`productType` | The product type name, e.g `APK`, `AAB`, or `IPA`
-`environment` | The server environment, e.g `Regression`, `Production`, `Transaction`, `Activation`, `PWF`, etc
-`version` | Version of the apps we will build
 `whatNew` | The title of the task. It can be clickup URL, the id of task, or the raw message. Note that raw message will not be formatted with link
 `changelog` | The format is same with `whatNew`. The only difference is changelog usually will be added after second and the next iteration
 `additionalNotes` | Put the additional information (raw string)
 `notifyTo` | Formatted slack user id, you can notify group or personal user
+`firebaseTester` | Array of string containing name of firebase tester (should in array and can be empty)
 `autoUpdateStatusClickUp` | If `true`, all clickup id in what's new and changelog will be updated to `Ready to Test`
 
 ## How it works
