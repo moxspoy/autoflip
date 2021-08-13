@@ -21,7 +21,7 @@ export const upload = async (file, isStaging) => {
     console.log('Autoflip', `uploading ${file} into firebase...`);
     let command = `firebase --token ${token} appdistribution:distribute ${getIosArtifact()} --app ${appId}  --release-notes-file ${releaseNotesFile}`;
     if (ReleaseNotes?.firebaseTester?.length) {
-        command = command + ` --groups "${groups}"`;
+        command += ` --groups "${groups}"`;
     }
     execSync(command);
     fs.unlinkSync(filename);
