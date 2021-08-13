@@ -37,7 +37,7 @@ export function getAndroidArtifact() {
 }
 
 export function getIosArtifact() {
-    const absolute = `./build/`;
+    const absolute = process.env.FLIP_MOBILE_DIR + 'ios/build';
     const extension = '.ipa';
     const ipa = findFileFromDirectory(absolute, extension);
     if (!ipa?.length) {
