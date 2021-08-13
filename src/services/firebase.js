@@ -19,7 +19,10 @@ export const upload = async (file, isStaging) => {
     const releaseNotesFile = path.join(process.cwd(), filename);
     const groups = ReleaseNotes.firebaseTester.join(',');
     console.log('Autoflip', `uploading ${file} into firebase...`);
-    const command = `firebase --token ${token} appdistribution:distribute ${getIosArtifact()} --app ${appId}  --release-notes-file ${releaseNotesFile} --groups "${groups}"`;
+    let command = `firebase --token ${token} appdistribution:distribute ${getIosArtifact()} --app ${appId}  --release-notes-file ${releaseNotesFile}`;
+    if (ReleaseNotes?.firebaseTester?.length) {
+        command = command + ` --groups "${groups}"`;
+    }
     execSync(command);
     fs.unlinkSync(filename);
 };
