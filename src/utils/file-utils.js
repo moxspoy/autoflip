@@ -37,7 +37,7 @@ export function getAndroidArtifact() {
 }
 
 export function getIosArtifact() {
-    const absolute = `./ios/build/`;
+    const absolute = `./build/`;
     const extension = '.ipa';
     const ipa = findFileFromDirectory(absolute, extension);
     if (!ipa?.length) {
