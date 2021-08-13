@@ -1,4 +1,5 @@
 import SLACK_USER from "./src/constants/index.js";
+import FIREBASE_USER from "./src/constants/firebase-user.js";
 
 export default {
     defaultProjectName: "Flip",
@@ -14,6 +15,10 @@ export default {
     additionalNotes: "",
     notifyTo: [
         SLACK_USER.ADIT, SLACK_USER.FADEL, SLACK_USER.QA_DOMESTIC
+    ],
+    firebaseTester: [
+        FIREBASE_USER.APP_DISTRIBUTION_GROUP.QA_B2B,
+        FIREBASE_USER.APP_DISTRIBUTION_GROUP.QA_FLIP,
     ],
     autoUpdateStatusClickUp: true,
 }
