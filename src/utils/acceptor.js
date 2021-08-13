@@ -25,13 +25,16 @@ case 'move_to_android_project':
 case 'clean_android_production':
     CLIUtils.executeCommand(`cd ${androidProjectDirectory} && ENVFILE=.env.production ./gradlew clean`);
     break;
-case 'staging_release_and_debug_slack':
+case 'android_regression':
     BuildUtils.buildAndroidStagingDebugReleaseAndNotifySlack();
     break;
 case 'staging_debug_slack':
     BuildUtils.buildAndroidStagingDebugSlack();
     break;
-case 'production_release_and_debug_slack':
+case 'android_staging_release_slack':
+    BuildUtils.buildAndroidStagingReleaseSlack();
+    break;
+case 'android_sanity':
     BuildUtils.buildAndroidProductionReleaseDebugSlack();
     break;
 case 'ios_regression':
@@ -49,7 +52,7 @@ case 'sentry_android':
 case 'sentry_ios':
     SentryUtils.uploadSourceMapsIosToSentry();
     break;
-case 'production_release_oppo_slack':
+case 'android_oppo':
     BuildUtils.buildAndroidProductionReleaseOppoSlack();
     break;
 default:
