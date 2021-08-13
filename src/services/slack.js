@@ -68,7 +68,7 @@ Download here:
     `;
 };
 
-export const sendMessageAndUpload = async (attachments) => {
+export const sendMessageAndUpload = async (attachments, isStaging) => {
     try {
         const urls = [];
 
@@ -77,7 +77,7 @@ export const sendMessageAndUpload = async (attachments) => {
             urls.push(url);
         }
 
-        const data = await buildReleaseNote();
+        const data = await buildReleaseNote(isStaging, true);
         const linkableArtifactsMessage = getArtifactMessage(attachments, urls);
         const message = `
 ${data}
@@ -91,4 +91,4 @@ ${linkableArtifactsMessage}
     }
 };
 
-export const getMessageIos = async () => buildReleaseNote();
+export const getMessageIos = async (isStaging) => buildReleaseNote(isStaging);

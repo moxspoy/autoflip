@@ -8,11 +8,24 @@ const SLACK_USER = {
     RAHMI: '<@U021GLY2F4Y>',
     ZEGO: '<@UMUKQ3WP8>',
     SOURABH: '<@U01RJAVPBKL>',
+    NOVA: '<@U01DV3NTHK9>',
+    DYTA: '<@U023W61QAD6>',
+    AZIZAH: '<@U020PAVTBK5>',
+    OIM: '<@U01MNJNG9MF>',
+    MIFTAH: '<@U028ED25JHM>',
+    SYIFA: '<@UUBL9QQLA>',
     QA_CONSUMER_APP: '@qa-cons-app',
     QA_INTERNATIONAL: '@qa-international-transfer',
     QA_CONSUMER_SOLUTION_GROUP: '@qa-consumer-solutions-group',
     QA_DOMESTIC: '@qa-domestic-transfer',
     QA_BUSINESS_SOLUTIONS: '@qa-business-solutions',
 };
+
+export const PRODUCT_TYPE = {
+    IOS: 'iOS',
+    ANDROID: 'APK',
+};
+
+export const DEFAULT_PROJECT_NAME = 'Flip';
 
 export default SLACK_USER;
