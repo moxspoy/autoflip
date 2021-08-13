@@ -13,7 +13,7 @@ export const upload = async (file, isStaging) => {
     const appId = isStaging
         ? process.env.FIREBASE_APP_ID_IOS_STAGING_RELEASE
         : process.env.FIREBASE_APP_ID_IOS_PRODUCTION_RELEASE;
-    const releaseNote = await buildReleaseNote();
+    const releaseNote = await buildReleaseNote(isStaging);
     const filename = 'release-notes.txt';
     fs.writeFileSync(filename, releaseNote);
     const releaseNotesFile = path.join(process.cwd(), filename);
