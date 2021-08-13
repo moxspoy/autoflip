@@ -15,4 +15,11 @@ const SLACK_USER = {
     QA_BUSINESS_SOLUTIONS: '@qa-business-solutions',
 };
 
+export const PRODUCT_TYPE = {
+    IOS: 'iOS',
+    ANDROID: 'APK',
+};
+
+export const DEFAULT_PROJECT_NAME = 'Flip';
+
 export default SLACK_USER;
