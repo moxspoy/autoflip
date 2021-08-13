@@ -9,7 +9,7 @@ import * as SlackService from "./src/services/slack.js";
 import * as FirebaseService from "./src/services/firebase.js";
 import * as CLIUtils from "./src/utils/cli-utils.js";
 import minimist from 'minimist';
-import * as ClickupService from "./src/services/clickup";
+import * as ClickupService from "./src/services/clickup.js";
 
 const args = minimist(process.argv.slice(2));
 
