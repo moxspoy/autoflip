@@ -44,7 +44,7 @@ export const buildAndroidProductionReleaseOppoSlack = () => {
 };
 
 export const cleanIos = () => {
-    const command = 'xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean';
+    const command = `cd ${flipMobileDirectory}/ios && xcodebuild -workspace FlipApp.xcworkspace -scheme FlipApp -sdk iphoneos -configuration Release clean`;
     executeSpawnCommand(command);
 };
 
